@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /********************************************************************************************
  *                                                                                          *
@@ -6,7 +6,6 @@
  * https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions           *
  *                                                                                          *
  ********************************************************************************************/
-
 
 /**
  * Returns the regexp that matches a GUID string representation
@@ -31,9 +30,10 @@
  * @return {RegExp}
  */
 function getRegexForGuid() {
-   return new RegExp('[a-fA-F0-9]{8}\-[a-fA-F0-9]{4}\-[a-fA-F0-9]{4}\-[a-fA-F0-9]{4}\-[a-fA-F0-9]{12}\}');
+  return new RegExp(
+    "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}}"
+  );
 }
-
 
 /**
  * Returns the regexp that matches all the strings from first column
@@ -53,9 +53,8 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-   throw new Error('Not implemented');
+  return new RegExp("p.t(?!ea|ar)");
 }
-
 
 /**
  * Returns the regexp that matches all IPv4 strings in
@@ -72,9 +71,8 @@ function getRegexForPitSpot() {
  * @return {RegExp}
  */
 function getRegexForIPv4() {
-   throw new Error('Not implemented');
+  throw new Error("Not implemented");
 }
-
 
 /**
  * Returns the regexp that matches all SSN (Social Security Number) codes in
@@ -91,9 +89,8 @@ function getRegexForIPv4() {
  * @return {RegExp}
  */
 function getRegexForSSN() {
-   throw new Error('Not implemented');
+  throw new Error("Not implemented");
 }
-
 
 /**
  * Returns the password validator regex.
@@ -116,14 +113,13 @@ function getRegexForSSN() {
  *   'Pa55'.match(validator) => false
  */
 function getPasswordValidator(minLength) {
-   throw new Error('Not implemented');
+  throw new Error("Not implemented");
 }
 
-
 module.exports = {
-    getRegexForGuid: getRegexForGuid,
-    getRegexForPitSpot: getRegexForPitSpot,
-    getRegexForIPv4: getRegexForIPv4,
-    getRegexForSSN: getRegexForSSN,
-    getPasswordValidator: getPasswordValidator
+  getRegexForGuid: getRegexForGuid,
+  getRegexForPitSpot: getRegexForPitSpot,
+  getRegexForIPv4: getRegexForIPv4,
+  getRegexForSSN: getRegexForSSN,
+  getPasswordValidator: getPasswordValidator
 };
