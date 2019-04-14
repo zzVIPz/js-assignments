@@ -95,7 +95,7 @@ function getSumBetweenNumbers(n1, n2) {
  */
 function isTriangle(a, b, c) {
   if (a + b <= c || a + c <= b || b + c <= a) return false;
-  return true; 
+  return true;
 }
 
 /**
@@ -131,7 +131,18 @@ function isTriangle(a, b, c) {
  *
  */
 function doRectanglesOverlap(rect1, rect2) {
-  throw new Error("Not implemented");
+  if (
+    (rect1.top <= rect2.top &&
+      rect2.top <= rect1.top + rect1.height &&
+      rect1.left <= rect2.left &&
+      rect2.left <= rect1.left + rect1.width) ||
+    (rect2.top <= rect1.top &&
+      rect1.top <= rect2.top + rect2.height &&
+      rect2.left <= rect1.left &&
+      rect1.left <= rect2.left + rect2.width)
+  )
+    return true;
+  return false;
 }
 
 /**
@@ -161,7 +172,12 @@ function doRectanglesOverlap(rect1, rect2) {
  *
  */
 function isInsideCircle(circle, point) {
-  throw new Error("Not implemented");
+  if (
+    (point.x - circle.center.x) ** 2 + (point.y - circle.center.y) ** 2 <
+    circle.radius ** 2
+  )
+    return true;
+  return false;
 }
 
 /**
@@ -176,9 +192,18 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-  throw new Error("Not implemented");
-}
+  for (let i = 0; i < str.length; i++) {
+    let count = 0,
+      pos = str.indexOf(str[i]);
 
+    while (pos !== -1) {
+      count++;
+      pos = str.indexOf(str[i], pos + 1);
+    }
+    if (count === 1) return str[i];
+  }
+  return null;
+}
 /**
  * Returns the string representation of math interval, specified by two points and include / exclude flags.
  * See the details: https://en.wikipedia.org/wiki/Interval_(mathematics)
@@ -201,7 +226,11 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-  throw new Error("Not implemented");
+  let str = "";
+  isStartIncluded ? (str += "[") : (str += "(");
+  a < b ? (str += a + ", " + b) : (str += b + ", " + a);
+  isEndIncluded ? (str += "]") : (str += ")");
+  return str;
 }
 
 /**
@@ -217,7 +246,10 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-  throw new Error("Not implemented");
+  return str
+    .split("")
+    .reverse()
+    .join("");
 }
 
 /**
@@ -233,7 +265,10 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-  throw new Error("Not implemented");
+  return +("" + num)
+    .split("")
+    .reverse()
+    .join("");
 }
 
 /**
@@ -275,7 +310,11 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-  throw new Error("Not implemented");
+  let str = "" + num;
+  while (str.length !== 1) {
+    str = "" + str.split("").reduce((a, b) => +a + +b);
+  }
+  return +str;
 }
 
 /**
