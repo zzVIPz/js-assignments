@@ -146,7 +146,13 @@ function retry(func, attempts) {
  *
  */
 function logger(func, logFunc) {
-  throw new Error("Not implemented");
+  let arr = [...arguments].length;
+  return function(x) {
+    let str = "";
+    str += `${func.name}(${x}) starts\n` + `${func.name}(${x}) ends`;
+    console.log(logFunc(str));
+    return func(x);
+  };
 }
 
 /**
@@ -163,7 +169,14 @@ function logger(func, logFunc) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn) {
-  throw new Error("Not implemented");
+  let arr = [...arguments].slice(1);
+  return function(x) {
+    let str = "";
+    let arrNew = [...arguments];
+    arr.forEach(el => (str += el));
+    arrNew.forEach(el => (str += el));
+    return str;
+  };
 }
 
 /**
@@ -183,7 +196,10 @@ function partialUsingArguments(fn) {
  *   getId10() => 11
  */
 function getIdGeneratorFunction(startFrom) {
-  throw new Error("Not implemented");
+  let count = startFrom;
+  return function() {
+    return startFrom++;
+  };
 }
 
 module.exports = {
